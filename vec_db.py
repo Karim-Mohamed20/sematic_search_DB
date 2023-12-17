@@ -8,7 +8,7 @@ from dataclasses import dataclass
 import os
 
 class VecDB:
-    def __init__(self, file_path = "clusters_100K", new_db = True,n_clusters=5, batch_size=10000) -> None:
+    def __init__(self, file_path = "clusters_10K", new_db = True,n_clusters=5, batch_size=10000) -> None:
         self.n_clusters = n_clusters
         self.batch_size = batch_size
         if file_path is not None:
