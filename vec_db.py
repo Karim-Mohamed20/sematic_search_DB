@@ -19,7 +19,7 @@ class VecDB:
           else:
             with open(file_path + "/objects.pkl", "rb") as file:
                 loaded_obj = pickle.load(file)
-            self._dict.update(loaded_obj.dict_)  # Update the attributes
+            self.__dict__.update(loaded_obj.__dict__)  # Update the attributes
             self.file_path = file_path
         else:
             self.file_path = "new_db"
