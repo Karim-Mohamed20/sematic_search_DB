@@ -8,7 +8,7 @@ from dataclasses import dataclass
 import os
 
 class VecDB:
-    def __init__(self, file_path = "clusters_100K", new_db = True,n_clusters=100, batch_size=10000) -> None:
+    def __init__(self, file_path = "clusters_100K", new_db = True,n_clusters=5, batch_size=10000) -> None:
         self.n_clusters = n_clusters
         self.batch_size = batch_size
         if file_path is not None:
@@ -39,7 +39,7 @@ class VecDB:
 
         # Build HNSW index for the selected cluster
         hnsw_cluster = Index(space='cosine', dim=selected_cluster_vectors.shape[1])
-        hnsw_cluster.init_index(max_elements=len(selected_cluster_vectors), ef_construction=200, M=16)
+        hnsw_cluster.init_index(max_elements=len(selected_cluster_vectors), ef_construction=50, M=16)
         hnsw_cluster.add_items(selected_cluster_vectors, np.arange(len(selected_cluster_vectors)))
         hnsw_cluster.save_index(f"hnsw_index_cluster_{query_cluster}.bin")
 
